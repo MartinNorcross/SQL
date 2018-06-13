@@ -1,0 +1,13 @@
+/* INDEX LOOKUP STATS */
+
+SELECT 
+	object_name(object_id), 
+	user_lookups, 
+	last_user_lookup
+FROM 
+	sys.dm_db_index_usage_stats u 
+WHERE 
+	database_id = db_id(db_name())
+AND user_lookups > 0
+ORDER BY 
+	user_lookups DESC
